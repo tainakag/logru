@@ -1,19 +1,14 @@
 <template>
   <div>
-    <section class="hero is-primary">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            Nuxt TS App - tkugimot
-          </h1>
-          <p class="subtitle">
-            Very Easy Todo List
-          </p>
-          <font-awesome-icon icon="coffee" />
+    <section>
+      <div class="container">
+        <div>
+          <i class="fas fa-angle-double-up"></i>
+          <span>Logru</span>
         </div>
+        <!-- <Nuxt /> -->
       </div>
     </section>
-    <Nuxt />
   </div>
 </template>
 

@@ -35,9 +35,10 @@ export default {
    */
   plugins: [
     {
-      src: '~/plugins/moment-filter',
+      src: '@/plugins/moment-filter',
       ssr: false
-    }
+    },
+    '@/plugins/date-format'
   ],
   /*
    ** Nuxt.js dev-modules

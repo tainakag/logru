@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <div class="format-date">{{ now | moment }}</div>
+      <div class="format-date">{{ formattedTime }}</div>
       <div class="monologue">
         あなたがこなしたタスクをログとして残しましょう。
       </div>
@@ -29,6 +29,11 @@ export default {
     return {
       now: new Date(),
       timerId: undefined
+    }
+  },
+  computed: {
+    formattedTime() {
+      return this.$dateFormat(this.now, 'yyyy/MM/dd HH:mm:ss')
     }
   },
   mounted() {

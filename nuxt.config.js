@@ -33,27 +33,13 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    {
-      src: '@/plugins/moment-filter',
-      ssr: false
-    },
-    '@/plugins/date-format'
-  ],
+  plugins: ['@/plugins/date-format'],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
-    [
-      '@nuxtjs/moment',
-      {
-        /* module options */
-        defaultLocale: 'ja',
-        locales: ['ja']
-      }
-    ]
+    '@nuxtjs/eslint-module'
   ],
   /*
    ** Nuxt.js modules

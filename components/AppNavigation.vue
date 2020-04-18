@@ -1,13 +1,15 @@
 <template>
-  <b-navbar>
+  <b-navbar class="header">
     <template slot="brand">
       <b-navbar-item :to="{ path: '/' }" tag="router-link">
         <!-- <img
           src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
           alt="Lightweight UI components for Vue.js based on Bulma"
         /> -->
-        <h1>Logru</h1>
-        <i class="fas fa-angle-double-up fa-fw"></i>
+        <div class="title-logo">
+          <span>Logru</span>
+          <b-icon pack="fas" icon="angle-double-up"></b-icon>
+        </div>
       </b-navbar-item>
     </template>
     <template slot="start">
@@ -41,3 +43,18 @@
     </template>
   </b-navbar>
 </template>
+
+<style>
+.header {
+  background-color: #7ebfb5;
+}
+.title-logo {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* display: block; */
+  font-weight: 500;
+  font-size: 30px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+</style>

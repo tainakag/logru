@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Logru',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -29,17 +29,30 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~/assets/style.scss'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    {
+      src: '~/plugins/moment-filter',
+      ssr: false
+    }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    [
+      '@nuxtjs/moment',
+      {
+        /* module options */
+        defaultLocale: 'ja',
+        locales: ['ja']
+      }
+    ]
   ],
   /*
    ** Nuxt.js modules
@@ -47,7 +60,7 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     // '@nuxtjs/bulma',
-    'nuxt-buefy',
+    ['nuxt-buefy', { css: false }],
     '@nuxtjs/font-awesome',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios'

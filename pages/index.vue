@@ -1,23 +1,22 @@
 <template>
   <div class="container">
     <div>
-      <!-- <logo /> -->
-      <h1 class="title">
-        Logru
-      </h1>
-      <h2 class="subtitle">
-        Super Web App to log your work!
-      </h2>
-      <div class="log-message">
-        <b-field label="Message">
-          <b-input placeholder="猫のトイレ掃除した..." rounded></b-input>
-        </b-field>
+      <div class="format-date">{{ now | moment }}</div>
+      <div class="monologue">
+        あなたがこなしたタスクをログとして残しましょう。
       </div>
-      <div class="log-button">
-        <b-button type="is-primary" size="is-large" rounded>
-          <b-icon pack="fas" icon="angle-double-up"></b-icon>
-          <span>ログる</span>
-        </b-button>
+      <div class="log-form columns">
+        <div class="log-message column is-four-fifths">
+          <b-field>
+            <b-input placeholder="猫のトイレ掃除した..." rounded></b-input>
+          </b-field>
+        </div>
+        <div class="log-button column">
+          <b-button type="is-primary" rounded>
+            <span>ログる</span>
+            <b-icon pack="fas" icon="angle-double-up"></b-icon>
+          </b-button>
+        </div>
       </div>
     </div>
   </div>
@@ -25,18 +24,35 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
+  data() {
+    return {
+      now: new Date(),
+      timerId: undefined
+    }
+  },
+  mounted() {
+    this.timerId = setInterval(this.fetchTime, 1000)
+  },
+  beforeDestroy() {
+    clearInterval(this.timerId)
+  },
+  methods: {
+    fetchTime() {
+      this.now = new Date()
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
 .container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  /* text-align: center; */
+  // align-items: center;
+  text-align: center;
 }
 
 .title {
@@ -57,10 +73,29 @@ export default {
   padding-bottom: 15px;
 }
 
-.log-button {
+.monologue {
+  font-weight: 200;
+  font-size: 30px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.log-form {
+  .column {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+  }
+}
+
+.format-date {
   padding-top: 15px;
   padding-bottom: 15px;
-  text-align: center;
+  display: block;
+  font-weight: 300;
+  font-size: 60px;
+  letter-spacing: 1px;
 }
 
 .links {

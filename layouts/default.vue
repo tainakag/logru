@@ -3,9 +3,7 @@
     <header>
       <AppNavigation />
     </header>
-    <hr />
     <nuxt />
-    <hr />
     <footer>
       footer
     </footer>

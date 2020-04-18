@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="log in logs" :key="log.id" class="columns">
+      <li v-for="log in orderedLogsByIdDesc" :key="log.id" class="columns">
         <div class="column is-three-fifths is-offset-one-fifth">
           <LogListItem :log="log" />
         </div>
@@ -25,6 +25,11 @@ export default {
   data() {
     return {
       //   logs: []
+    }
+  },
+  computed: {
+    orderedLogsByIdDesc() {
+      return this.logs.slice().reverse()
     }
   },
   mounted() {},

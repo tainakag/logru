@@ -2,22 +2,37 @@
   <div>
     <div class="log-form-container container">
       <div>
-        <div class="format-date">{{ formattedTime }}</div>
+        <div>
+          <div class="format-date">
+            <small>{{ formattedDate }}</small>
+          </div>
+          <div class="format-time">
+            <strong>{{ formattedTime }}</strong>
+          </div>
+        </div>
         <div class="monologue">
           あなたがこなしたタスクをログとして残しましょう。
         </div>
         <div class="log-form columns">
           <div class="log-message column is-four-fifths">
-            <b-field>
-              <b-input placeholder="猫のトイレ掃除した..." rounded></b-input>
+            <b-field
+              :type="isValid ? '' : 'is-danger'"
+              :message="isValid ? '' : 'ログメッセージを入力してください'"
+            >
+              <b-input
+                v-model="message"
+                placeholder="猫のトイレ掃除した..."
+                rounded
+              ></b-input>
             </b-field>
           </div>
-          <div class="log-button column">
+          <LogAddButton @addLog="addLog" />
+          <!-- <div class="log-button column">
             <b-button type="is-primary" rounded>
               <span>ログる</span>
               <b-icon pack="fas" icon="angle-double-up"></b-icon>
             </b-button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -33,27 +48,35 @@
 
 <script>
 import LogList from '@/components/LogList/LogList'
+import LogAddButton from '@/components/Buttons/LogAddButton'
+
 export default {
   components: {
-    LogList
+    LogList,
+    LogAddButton
   },
   data() {
     return {
       now: new Date(),
+      message: '',
       timerId: undefined,
-      logs: []
+      logs: [],
+      isValid: true
     }
   },
   computed: {
+    formattedDate() {
+      return this.$dateFormat(this.now, 'yyyy年MM月dd日')
+    },
     formattedTime() {
-      return this.$dateFormat(this.now, 'yyyy/MM/dd HH:mm:ss')
+      return this.$dateFormat(this.now, 'HH:mm:ss')
     },
     id() {
       return 1
     }
   },
   mounted() {
-    this.timerId = setInterval(this.fetchTime, 1000)
+    this.timerId = setInterval(this.fetchTime, 100)
     this.fetchLogs()
   },
   beforeDestroy() {
@@ -78,6 +101,27 @@ export default {
           createdAt: new Date()
         }
       ]
+    },
+    validateLog() {
+      if (this.message === '') {
+        this.isValid = false
+      } else {
+        this.isValid = true
+      }
+    },
+    addLog() {
+      this.validateLog()
+      if (this.isValid) {
+        const newId = this.logs.length + 1
+        this.logs.push({
+          id: newId,
+          name: 'task' + newId,
+          message: this.message,
+          createdAt: new Date()
+        })
+        this.message = ''
+      } else {
+      }
     }
   }
 }
@@ -147,6 +191,12 @@ export default {
 
 .format-date {
   padding-top: 15px;
+  display: block;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+.format-time {
   padding-bottom: 15px;
   display: block;
   font-weight: 300;

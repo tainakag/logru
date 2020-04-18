@@ -1,17 +1,25 @@
 <template>
   <div>
-    <section>
-      <div class="container">
-        <div>
-          <i class="fas fa-angle-double-up"></i>
-          <span>Logru</span>
-        </div>
-        <!-- <Nuxt /> -->
-      </div>
-    </section>
+    <header>
+      <AppNavigation />
+    </header>
+    <hr />
+    <nuxt />
+    <hr />
+    <footer>
+      footer
+    </footer>
   </div>
 </template>
 
+<script>
+import AppNavigation from '~/components/AppNavigation'
+export default {
+  components: {
+    AppNavigation
+  }
+}
+</script>
 <style lang="scss">
 .hero {
   .hero-body {

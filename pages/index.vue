@@ -1,36 +1,31 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <!-- <logo /> -->
       <h1 class="title">
-        logru
+        Logru
       </h1>
       <h2 class="subtitle">
         Super Web App to log your work!
       </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      <div class="log-message">
+        <b-field label="Message">
+          <b-input placeholder="猫のトイレ掃除した..." rounded></b-input>
+        </b-field>
+      </div>
+      <div class="log-button">
+        <b-button type="is-primary" size="is-large" rounded>
+          <b-icon pack="fas" icon="angle-double-up"></b-icon>
+          <span>ログる</span>
+        </b-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
+  components: {}
 }
 </script>
 
@@ -40,8 +35,8 @@ export default {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* align-items: center; */
+  /* text-align: center; */
 }
 
 .title {
@@ -60,6 +55,12 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+}
+
+.log-button {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
 }
 
 .links {
